@@ -1,0 +1,498 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #39bc4b, #15ff00);
+  padding: 3vw;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+h2 {
+  text-align: center;
+  background: #fff;
+  padding: 2vw;
+  border-radius: 15px;
+  font-size: 1.2rem;
+}
+
+.form-section {
+  background: #fff;
+  padding: 3vw;
+  border-radius: 10px;
+  margin-top: 3vw;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3vw;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 1.5vw;
+  font-size: 0.9rem;
+}
+
+input, select, button {
+  padding: 2vw;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="number"],
+input[type="text"] {
+  max-width: 100%;
+}
+
+input[type="range"] {
+  width: 100%; /* Full width for better scaling */
+  height: 1rem; /* Larger track for touch devices */
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ddd;
+  border-radius: 6px;
+  outline: none;
+  margin: 0.5rem 0;
+  touch-action: pan-x; /* Smooth touch scrolling */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.5rem; /* Larger thumb for touch */
+  height: 1.5rem;
+  background: #39bc4b;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #39bc4b;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-moz-range-thumb:hover {
+  background: #15ff00;
+}
+
+table {
+  width: 100%;
+  margin-top: 3vw;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th, td {
+  padding: 1.5vw;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.button-group {
+  margin-top: 3vw;
+  display: flex;
+  gap: 2vw;
+}
+
+button {
+  background-color: #39bc4b;
+  color: white;
+  border: none;
+  padding: 2vw 4vw;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background-color: #15ff00;
+}
+
+.remove-btn {
+  background-color: #ff4c4c;
+}
+
+.remove-btn:hover {
+  background-color: #e60000;
+}
+
+/* Mobile view (≤780px) */
+@media (max-width: 780px) {
+  table {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  thead {
+    display: table-header-group;
+  }
+  th {
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+  }
+  tr {
+    display: table-row;
+  }
+  td {
+    display: table-cell;
+    padding: 1vw 1.5vw;
+    text-align: center;
+    vertical-align: middle;
+  }
+  td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 1vw;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* Nutrient Table */
+  #nutrientTable {
+    overflow-x: hidden;
+    margin: 0 auto;
+    width: 90%;
+    min-width: 280px;
+    max-width: 360px;
+  }
+  #nutrientTable th, #nutrientTable td {
+    padding: 1vw;
+    font-size: 0.85rem;
+  }
+  #nutrientTable .nutrient-name {
+    font-weight: bold;
+    background-color: lightblue;
+  }
+  #nutrientTable tr:nth-child(2) .nutrient-name {
+    background-color: orange;
+  }
+  #nutrientTable tr:nth-child(3) .nutrient-name {
+    background-color: teal;
+  }
+  #nutrientTable tr:nth-child(4) .nutrient-name {
+    background-color: green;
+  }
+  #nutrientTable tr:nth-child(5) .nutrient-name {
+    background-color: rgb(255, 255, 143);
+  }
+  #nutrientTable .nutrient-value {
+    display: inline-block;
+    width: 100%;
+  }
+  #nutrientTable tr.different td:nth-child(3) {
+    background-color: red;
+    color: white;
+  }
+  #nutrientTable tr.exceeds-expected td:nth-child(3) {
+    background-color: rgb(0, 183, 255);
+    color: black;
+  }
+
+  /* Color Legend */
+  #nutrientTable::after {
+    content: "Legend: N (lightblue), P₂O₅ (orange), K₂O (teal), MgO (green), TOTAL (yellow)";
+    display: block;
+    font-size: 0.75rem;
+    color: #333;
+    margin-top: 1vw;
+    text-align: center;
+  }
+
+  /* Materials Table */
+  #materialTable {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 auto;
+    width: 90%;
+    min-width: 280px;
+    max-width: calc(100vw - 6vw); /* Fit within viewport */
+    box-sizing: border-box;
+    display: block;
+  }
+  #materialTable table {
+    width: 100%; /* Scale to container */
+    min-width: 500px; /* Ensure scrolling for all columns */
+  }
+  #materialTable th, #materialTable td {
+    padding: 1vw 1.5vw;
+    min-width: 90px; /* Slightly smaller for mobile */
+    font-size: 0.75rem;
+  }
+  #materialTable input[type="range"] {
+    width: 100%;
+    height: 1.2rem; /* Larger track for mobile */
+  }
+  #materialTable input[type="range"]::-webkit-slider-thumb,
+  #materialTable input[type="range"]::-moz-range-thumb {
+    width: 1.8rem; /* Larger thumb for touch */
+    height: 1.8rem;
+  }
+}
+
+/* Tablet view (768px–1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Nutrient Table */
+  #nutrientTable {
+    overflow-x: hidden;
+    margin: 0 auto;
+    width: 90%;
+    min-width: 300px;
+    max-width: 450px;
+  }
+  #nutrientTable th, #nutrientTable td {
+    padding: 1vw;
+    font-size: 0.9rem;
+  }
+  #nutrientTable .nutrient-name {
+    font-weight: bold;
+    background-color: lightblue;
+  }
+  #nutrientTable tr:nth-child(2) .nutrient-name {
+    background-color: orange;
+  }
+  #nutrientTable tr:nth-child(3) .nutrient-name {
+    background-color: teal;
+  }
+  #nutrientTable tr:nth-child(4) .nutrient-name {
+    background-color: green;
+  }
+  #nutrientTable tr:nth-child(5) .nutrient-name {
+    background-color: rgb(255, 255, 143);
+  }
+  #nutrientTable .nutrient-value {
+    display: inline-block;
+    width: 100%;
+  }
+  #nutrientTable tr.different td:nth-child(3) {
+    background-color: red;
+    color: white;
+  }
+  #nutrientTable tr.exceeds-expected td:nth-child(3) {
+    background-color: rgb(0, 183, 255);
+    color: black;
+  }
+
+  /* Color Legend */
+  #nutrientTable::after {
+    content: "Legend: N (lightblue), P₂O₅ (orange), K₂O (teal), MgO (green), TOTAL (yellow)";
+    display: block;
+    font-size: 0.8rem;
+    color: #333;
+    margin-top: 1vw;
+    text-align: center;
+  }
+
+
+  #materialTable {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 auto;
+    width: 95%;
+    min-width: 400px;
+    max-width: calc(100vw - 6vw);
+    box-sizing: border-box;
+    display: block;
+  }
+  #materialTable table {
+    width: 100%;
+    min-width: 600px; /* Ensure all columns are visible with scroll */
+  }
+  #materialTable th, #materialTable td {
+    padding: 1vw 1.5vw;
+    min-width: 100px;
+    font-size: 0.9rem;
+  }
+  #materialTable input[type="range"] {
+    width: 100%;
+    height: 1.4rem; /* Larger for tablet touch */
+  }
+  #materialTable input[type="range"]::-webkit-slider-thumb,
+  #materialTable input[type="range"]::-moz-range-thumb {
+    width: 2rem; /* Larger thumb for iPad */
+    height: 2rem;
+  }
+}
+
+/* Desktop view (≥1024px) */
+@media (min-width: 1024px) {
+  .form-row {
+    flex-direction: row;
+    align-items: center;
+  }
+  label {
+    flex: 1;
+    margin-right: 2vw;
+    margin-bottom: 0;
+  }
+  input, select {
+    flex: 2;
+  }
+  table {
+    display: table;
+    table-layout: auto;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr {
+    display: table-row;
+  }
+  td {
+    display: table-cell;
+    text-align: center;
+  }
+  td:before {
+    content: none;
+  }
+
+  /* Nutrient Table */
+  #nutrientTable {
+    overflow-x: hidden;
+    margin: 0 auto;
+    width: 90%;
+    min-width: 300px;
+    max-width: 450px;
+  }
+  #nutrientTable th, #nutrientTable td {
+    padding: 1vw;
+    font-size: 0.9rem;
+  }
+  #nutrientTable .nutrient-name {
+    font-weight: bold;
+    background-color: lightblue;
+  }
+  #nutrientTable tr:nth-child(2) .nutrient-name {
+    background-color: orange;
+  }
+  #nutrientTable tr:nth-child(3) .nutrient-name {
+    background-color: teal;
+  }
+  #nutrientTable tr:nth-child(4) .nutrient-name {
+    background-color: green;
+  }
+  #nutrientTable tr:nth-child(5) .nutrient-name {
+    background-color: rgb(255, 255, 143);
+  }
+  #nutrientTable .nutrient-value {
+    display: inline-block;
+    width: 100%;
+  }
+  #nutrientTable tr.different td:nth-child(3) {
+    background-color: red;
+    color: white;
+  }
+  #nutrientTable tr.exceeds-expected td:nth-child(3) {
+    background-color: rgb(0, 183, 255);
+    color: black;
+  }
+
+  /* Color Legend */
+  #nutrientTable::after {
+    content: "Legend: N (lightblue), P₂O₅ (orange), K₂O (teal), MgO (green), TOTAL (yellow)";
+    display: block;
+    font-size: 0.8rem;
+    color: #333;
+    margin-top: 1vw;
+    text-align: center;
+  }
+
+  /* Materials Table */
+  #materialTable {
+    overflow-x: hidden;
+    margin: 0 auto;
+    width: 90%;
+    min-width: 400px;
+    max-width: 800px; /* Scale for larger screens */
+  }
+  #materialTable table {
+    width: 100%;
+  }
+  #materialTable th, #materialTable td {
+    padding: 1vw 1.5vw;
+    min-width: 120px;
+    font-size: 0.95rem;
+  }
+  #materialTable input[type="range"] {
+    width: 100%;
+    height: 1.2rem;
+  }
+  #materialTable input[type="range"]::-webkit-slider-thumb,
+  #materialTable input[type="range"]::-moz-range-thumb {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+/* Select2 adjustments */
+.select2-container {
+  width: 80% !important;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.select2-selection {
+  font-size: 0.9rem;
+  padding: 1vw 1.5vw;
+  height: auto;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.select2-selection__rendered {
+  white-space: nowrap;
+  max-width: calc(100% - 3rem);
+  line-height: 1.6;
+  padding-right: 0.5rem;
+  display: block;
+}
+
+.select2-selection__arrow {
+  height: 2.8rem;
+  width: 1.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.select2-selection__clear {
+  margin-right: 1.5rem;
+  font-size: 1rem;
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.select2-dropdown {
+  font-size: 0.9rem;
+  max-width: 100vw;
+  overflow-x: auto;
+}
+
+.select2-results__option {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  padding: 2vw;
+}
+
+.fixed-value {
+  font-style: italic;
+  color: red;
+}
